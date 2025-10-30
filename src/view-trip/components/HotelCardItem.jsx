@@ -1,20 +1,16 @@
 import { GetPlaceDetails, PHOTO_REF_URL } from "@/service/GlobalApi";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function HotelCardItem({ hotel, index }) {
   const [photoUrl, setPhotoUrl] = useState();
-
-  useEffect(() => {
-    hotel && GetPlacePhoto();
-  }, [hotel]); 
 
   const GetPlacePhoto = async () => {
     const data = {
       textQuery: hotel?.hotelName,
     };
 
-    const result = await GetPlaceDetails(data).then((resp) => {
+    await GetPlaceDetails(data).then((resp) => {
       console.log(resp.data.places[0].photos[3].name);
 
       const PhotoUrl = PHOTO_REF_URL.replace(
@@ -24,6 +20,11 @@ function HotelCardItem({ hotel, index }) {
       setPhotoUrl(PhotoUrl);
     });
   };
+
+  useEffect(() => {
+    hotel && GetPlacePhoto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hotel]);
 
   return (
     <Link

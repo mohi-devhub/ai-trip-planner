@@ -1,22 +1,16 @@
-import { Button } from '@/components/ui/button';
 import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
-import React, { useEffect, useState } from 'react';
-import { FaMapLocationDot } from "react-icons/fa6";
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function PlaceCardItem({ place }) {
   const [photoUrl, setPhotoUrl] = useState();
-
-  useEffect(() => {
-    place && GetPlacePhoto();
-  }, [place]);
 
   const GetPlacePhoto = async () => {
     const data = {
       textQuery: place.placeName,
     };
 
-    const result = await GetPlaceDetails(data).then((resp) => {
+    await GetPlaceDetails(data).then((resp) => {
       if (resp?.data?.places?.[0]?.photos?.[4]?.name) {
         const PhotoUrl = PHOTO_REF_URL.replace(
           '{NAME}',
@@ -26,6 +20,11 @@ function PlaceCardItem({ place }) {
       }
     });
   };
+
+  useEffect(() => {
+    place && GetPlacePhoto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [place]);
 
   return (
     <Link

@@ -6,7 +6,7 @@ import {
   SelectTravelesList,
 } from "@/constants/options";
 import { chatSession } from "@/service/AIModel";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { toast } from "sonner";
 import {

@@ -1,4 +1,3 @@
-import React from "react";
 import PlaceCardItem from "./PlaceCardItem";
 
 function Placestovisit({ trip }) {
