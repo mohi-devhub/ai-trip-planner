@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import InfoSection from '../components/InfoSection';
 import Hotels from '../components/Hotels';
 import Placestovisit from '../components/Placestovisit';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 
 
 
